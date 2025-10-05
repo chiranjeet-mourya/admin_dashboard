@@ -25,8 +25,8 @@ const SalesChart = () => {
             <PieChart>
               <Pie
                 data={data}
-                ex="50%"
-                ey="50%"
+                cx="50%"
+                cy="50%"
                 innerRadius={40}
                 outerRadius={80}
                 paddingAngle={5}
@@ -60,7 +60,9 @@ const SalesChart = () => {
                     {item.name}
                   </span>
                 </div>
-                <div className="text-sm font-semibold text-slate-800 dark:text-white">{item.value} %</div>
+                <div className="text-sm font-semibold text-slate-800 dark:text-white">
+                  {item.value} %
+                </div>
               </div>
             );
           })}

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { FiBarChart2, FiZap } from "react-icons/fi";
-import User from "../../assets/user.jpg";
+import User from "../assets/user.jpg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import {
-  BiCalendar,
   BiMessageSquare,
   BiPackage,
   BiShoppingBag,
@@ -11,15 +10,18 @@ import {
   BiChevronDown,
 } from "react-icons/bi";
 import { CgCreditCard } from "react-icons/cg";
-import { AiFillFileText } from "react-icons/ai";
 import { CiSettings } from "react-icons/ci";
+import { TbBrandOauth } from "react-icons/tb";
+import { SiElement } from "react-icons/si";
+import { Link } from "react-router";
+import { GiLevelFourAdvanced } from "react-icons/gi";
+import { TbIconsOff } from "react-icons/tb";
 
 const menuItems = [
   {
-    id: "dashboard",
+    id: "/",
     icon: <LuLayoutDashboard />,
     label: "Dashboard",
-    active: true,
     badge: "New",
   },
   {
@@ -27,9 +29,8 @@ const menuItems = [
     icon: <FiBarChart2 />,
     label: "Analytics",
     submanu: [
-      { id: "overview", label: "Overview" },
       { id: "reports", label: "Reports" },
-      { id: "insights", label: "Insights" },
+      { id: "calander", label: "Calendar" },
     ],
   },
   {
@@ -38,7 +39,7 @@ const menuItems = [
     label: "Users",
     count: "2.4k",
     submanu: [
-      { id: "all-users", label: "All Users" },
+      { id: "user", label: "All Users" },
       { id: "roles", label: "Roles & Permissions" },
       { id: "activity", label: "User Activity" },
     ],
@@ -49,9 +50,30 @@ const menuItems = [
     label: "E-commerce",
     count: "2.4k",
     submanu: [
-      { id: "products", label: "Products" },
-      { id: "orders", label: "Orders" },
-      { id: "customers", label: "Customers" },
+      { id: "product", label: "Products" },
+      { id: "product-order", label: "Orders" },
+      { id: "product-customer", label: "Customers" },
+      { id: "customer-detail", label: "Customers Detail" },
+    ],
+  },
+  {
+    id: "elements",
+    icon: <SiElement />,
+    label: "UI Elements",
+    submanu: [
+      { id: "ui-alert", label: "Alerts" },
+      { id: "ui-button", label: "Buttons" },
+      { id: "ui-videos", label: "Videos" },
+      { id: "ui-gallery", label: "Gallery" },
+    ],
+  },
+  {
+    id: "Advanced",
+    icon: <GiLevelFourAdvanced />,
+    label: "Advanced UI",
+    submanu: [
+      { id: "file-manager", label: "File Manager" },
+      { id: "highlight", label: "Highlight" },
     ],
   },
   {
@@ -66,20 +88,28 @@ const menuItems = [
     label: "Transactions",
   },
   {
-    id: "messages",
+    id: "notification",
     icon: <BiMessageSquare />,
-    label: "Messages",
+    label: "Notifications",
     badge: "12",
   },
   {
-    id: "calendar",
-    icon: <BiCalendar />,
-    label: "Calendar",
+    id: "icons",
+    icon: <TbIconsOff />,
+    label: "Icons",
+    badge: "New",
   },
   {
-    id: "reports",
-    icon: <AiFillFileText />,
-    label: "Reports",
+    id: "authentication",
+    icon: <TbBrandOauth />,
+    label: "Authentication",
+    submanu: [
+      { id: "auth-login", label: "Login" },
+      { id: "auth-register", label: "Register" },
+      { id: "auth-re-password", label: "Re-Password" },
+      { id: "auth-error-4", label: "Error 404" },
+      { id: "auth-error-5", label: "Error 500" },
+    ],
   },
   {
     id: "settings",
@@ -92,22 +122,22 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
   const [expandItem, setExpandItem] = useState(new Set(["analytics"]));
 
   const toggleExpanded = (itemId) => {
-    const newExpanded = new Set(expandItem);
-
-    if (newExpanded.has(itemId)) {
-      newExpanded.delete(itemId);
-    } else {
-      newExpanded.add(itemId);
-    }
-
-    setExpandItem(newExpanded);
+    setExpandItem((prev) => {
+      const newExpanded = new Set(prev);
+      if (newExpanded.has(itemId)) {
+        newExpanded.delete(itemId);
+      } else {
+        newExpanded.add(itemId);
+      }
+      return newExpanded;
+    });
   };
 
   return (
     <>
       <div
         className={`${
-          collapse ? "w-20" : "w-70"
+          collapse ? "w-20" : "w-72"
         } bg-white/80 dark:bg-slate-900/80 transition-all duration-300 ease-in-out backdrop-blur-xl border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col relative z-10`}
       >
         {/* Logo */}
@@ -138,25 +168,18 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
               <div key={item.id}>
                 <button
                   className={`w-full flex items-center justify-between p-2 rounded-xl transition-all duration-200 cursor-pointer ${
-                    currentPage === item.id || item.active
+                    currentPage === item.id
                       ? "bg-gradient-to-r from-blue-500  to-purple-600 text-white shadow-lg shadow-blue-500/25"
                       : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800/50"
                   }`}
-                  onClick={()=>{
-                    if(item.submanu){
-                        toggleExpanded(item.id);
-                    }else{
-                        onPageChange(item.id)
-                    }
-                  }}
                 >
-                  <div className="flex items-center space-x-3">
-                    {item.icon}
+                  <Link to={item.id} className="flex items-center space-x-3">
+                    <span className="text-[20px]">{item.icon}</span>
 
                     {/* conditional rendering */}
                     <>
                       {!collapse && (
-                        <span className="ml-2 font-medium">{item.label}</span>
+                        <span className="ml-2 font-semibold">{item.label}</span>
                       )}
                       {!collapse && item.badge && (
                         <span className="px-2 py-0.5 text-xs bg-red-500 text-white rounded-md">
@@ -169,18 +192,38 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
                         </span>
                       )}
                     </>
-                  </div>
+                  </Link>
 
                   {!collapse && item.submanu && (
-                    <BiChevronDown className={`w-5 h-5 transition-transform`} />
+                    <span
+                      onClick={() => {
+                        if (item.submanu) {
+                          toggleExpanded(item.id);
+                        } else {
+                          onPageChange(item.id);
+                        }
+                      }}
+                    >
+                      <BiChevronDown
+                        className={`w-5 h-5 transition-transform`}
+                      />
+                    </span>
                   )}
                 </button>
 
                 {/* sab menu */}
-                {!collapse && item.submanu && expandItem.has(item.id) &&(
+                {!collapse && item.submanu && expandItem.has(item.id) && (
                   <div className="ml-8 mt-2 space-y-1">
                     {item.submanu.map((submenu) => {
-                      return <button key={submenu.id} className="w-full text-left p-2 text-sm text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-all cursor-pointer">{submenu.label}</button>;
+                      return (
+                        <Link
+                          to={submenu.id}
+                          key={submenu.id}
+                          className="block w-full text-left p-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-all cursor-pointer"
+                        >
+                          {submenu.label}
+                        </Link>
+                      );
                     })}
                   </div>
                 )}
