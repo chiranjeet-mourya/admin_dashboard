@@ -103,13 +103,6 @@ const menuItems = [
     id: "authentication",
     icon: <TbBrandOauth />,
     label: "Authentication",
-    submanu: [
-      { id: "auth-login", label: "Login" },
-      { id: "auth-register", label: "Register" },
-      { id: "auth-re-password", label: "Re-Password" },
-      { id: "auth-error-4", label: "Error 404" },
-      { id: "auth-error-5", label: "Error 500" },
-    ],
   },
   {
     id: "settings",

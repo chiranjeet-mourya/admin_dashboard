@@ -165,7 +165,12 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
                     <h3 className="font-semibold text-slate-800 dark:text-slate-100">
                       Notifications
                     </h3>
-                    <button onClick={() => setOpenNotification(!openNotification)} className="w-8 h-8 bg-slate-200 flex items-center justify-center rounded-[6px] text-slate-800"><FaXmark size={22}/></button>
+                    <button
+                      onClick={() => setOpenNotification(!openNotification)}
+                      className="w-8 h-8 bg-slate-200 flex items-center justify-center rounded-[6px] text-slate-800"
+                    >
+                      <FaXmark size={22} />
+                    </button>
                   </div>
 
                   <div className="max-h-80 overflow-y-auto">
@@ -462,9 +467,12 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
                     <button className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors">
                       <FaQuestionCircle /> Help Center
                     </button>
-                    <button className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-red-500 dark:text-red-400 transition-colors">
+                    <Link
+                      to="login"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-red-500 dark:text-red-400 transition-colors"
+                    >
                       <FaSignOutAlt /> Logout
-                    </button>
+                    </Link>
                   </div>
                 </div>
               )}

@@ -77,32 +77,48 @@ const Icons = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 max-h-[80vh] overflow-y-auto">
-          {filteredIcons.map((iconName, index) => {
-            const Icon = getIconComponent(iconName);
-            if (!Icon) return null;
+          {filteredIcons.length === 0 ? (
+            <div className="col-span-full flex flex-col items-center justify-center py-10 text-center">
+              <p className="text-slate-600 dark:text-slate-300 text-[16px] font-medium">
+                ❌ No icons found for "
+                <span className="font-semibold">{searchTerm}</span>"
+              </p>
+              <p className="text-slate-500 dark:text-slate-400 text-[14px] mt-1">
+                Try searching another name (e.g.{" "}
+                <span className="italic">FaBeer</span>,{" "}
+                <span className="italic">MdHome</span>
+                <span className="italic">BiIcons</span>
+                <span className="italic">CiIcons</span>)
+              </p>
+            </div>
+          ) : (
+            filteredIcons.map((iconName, index) => {
+              const Icon = getIconComponent(iconName);
+              if (!Icon) return null;
 
-            return (
-              <div
-                key={index}
-                onClick={() => handleCopy(iconName)}
-                className="relative group flex flex-col items-center justify-center gap-2 p-3 rounded-lg bg-slate-100/60 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all cursor-pointer"
-              >
-                <Icon
-                  size={24}
-                  className="text-slate-700 dark:text-slate-200"
-                />
-                <p className="text-[12px] text-slate-600 dark:text-slate-300 truncate w-full text-center">
-                  {iconName}
-                </p>
+              return (
+                <div
+                  key={index}
+                  onClick={() => handleCopy(iconName)}
+                  className="relative group flex flex-col items-center justify-center gap-2 p-3 rounded-lg bg-slate-100/60 dark:bg-slate-800/60 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all cursor-pointer"
+                >
+                  <Icon
+                    size={24}
+                    className="text-slate-700 dark:text-slate-200"
+                  />
+                  <p className="text-[12px] text-slate-600 dark:text-slate-300 truncate w-full text-center">
+                    {iconName}
+                  </p>
 
-                {copiedIcon === iconName && (
-                  <div className="absolute inset-0 bg-slate-800/80 flex flex-col items-center justify-center rounded-lg text-white text-sm">
-                    <FaCheck className="mb-1" /> Code Copied!
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                  {copiedIcon === iconName && (
+                    <div className="absolute inset-0 bg-slate-800/80 flex flex-col items-center justify-center rounded-lg text-white text-sm">
+                      <FaCheck className="mb-1" /> Code Copied!
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          )}
         </div>
       </div>
     </>
