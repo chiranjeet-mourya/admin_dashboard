@@ -17,9 +17,9 @@ import Video from "../feature/Ui_Element/Video";
 import Icons from "../feature/icons/Icons";
 import MainAuth from "../feature/Authentication/MainAuth";
 import DashboardLogin from "../component/DashboardLogin";
-import FileManager from "../feature/Advanced/FileManager";
 import Highlight from "../feature/Advanced/Highlight";
 import ProtectedRoute from "./ProtectedRoute";
+import FileManager from "../feature/Advanced/MainfileManager/FileManager";
 
 const AppRoutes = () => {
   return (

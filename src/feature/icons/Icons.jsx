@@ -5,10 +5,12 @@ import * as MdIcons from "react-icons/md";
 import * as BiIcons from "react-icons/bi";
 import * as CiIcons from "react-icons/ci";
 import { FaCheck, FaSearch } from "react-icons/fa";
+import Loader from "../../component/Loader";
 
 const Icons = () => {
   const [copiedIcon, setCopiedIcon] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const allIcons = [
     ...Object.keys(FaIcons),
@@ -50,6 +52,12 @@ const Icons = () => {
 
   return (
     <>
+      {/* {loading && (
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm">
+      <Loader /> 
+    </div>
+      )} */}
+
       <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl rounded-2xl border border-slate-200/50 dark:border-slate-700/50 p-4">
         <div className="flex items-center gap-1 text-[20px] font-bold text-slate-800 dark:text-white">
           Dashboard

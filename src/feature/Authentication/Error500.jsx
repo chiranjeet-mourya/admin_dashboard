@@ -1,6 +1,7 @@
 import React from "react";
 import { FiZap } from "react-icons/fi";
-import { useNavigate } from "react-router-dom"; // if using react-router
+import { useNavigate } from "react-router-dom";
+import img_7 from "../../assets/profile_gallery/img_7.jpg";
 
 const Error500 = () => {
   const navigate = useNavigate();
@@ -10,7 +11,16 @@ const Error500 = () => {
       <div className="w-14 h-14 mx-auto mb-5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
         <FiZap className="w-10 h-10 text-white" />
       </div>
-      <h1 className="text-6xl font-bold text-red-600 mb-4">500</h1>
+       <h1
+              className="text-[220px] font-bold bg-cover bg-center bg-no-repeat text-transparent"
+              style={{
+                backgroundImage: `url(${img_7})`,
+                WebkitBackgroundClip: "text",
+                backgroundClip: "text",
+              }}
+            >
+              500
+            </h1>
       <h2 className="text-2xl font-semibold text-slate-800 dark:text-white mb-2">
         Internal Server Error
       </h2>

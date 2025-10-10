@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FiBarChart2, FiZap } from "react-icons/fi";
+import { FaSignature } from "react-icons/fa6";
 import User from "../assets/user.jpg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import {
@@ -137,14 +138,14 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
         <div className="p-6 border-b border-slate-200/50 dark:border-slate-700/50">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-              <FiZap className="w-6 h-6 text-white" />
+              <FaSignature className="w-6 h-6 text-white" />
             </div>
 
             {/* conditional rendering */}
             {!collapse && (
               <div className="">
                 <span className="block text-xl font-bold text-slate-800 dark:text-white">
-                  Nexus
+                  Signature
                 </span>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
                   Admin Panel

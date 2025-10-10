@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiZap } from "react-icons/fi";
+import { FaSignature } from "react-icons/fa6";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -23,9 +23,9 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white dark:bg-slate-900 rounded-xl shadow-md">
+    <div className="w-[60%] mx-auto p-6 bg-white dark:bg-slate-900 rounded-xl shadow-md">
       <div className="w-14 h-14 mx-auto mb-5 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-        <FiZap className="w-10 h-10 text-white" />
+        <FaSignature className="w-10 h-10 text-white" />
       </div>
       <h1 className="text-2xl font-bold mb-6 text-center text-slate-800 dark:text-white">
         Register
