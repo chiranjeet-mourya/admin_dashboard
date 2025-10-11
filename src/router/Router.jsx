@@ -20,6 +20,12 @@ import DashboardLogin from "../component/DashboardLogin";
 import Highlight from "../feature/Advanced/Highlight";
 import ProtectedRoute from "./ProtectedRoute";
 import FileManager from "../feature/Advanced/MainfileManager/FileManager";
+import Pricing from "../feature/pricing/Pricing";
+import ContactList from "../feature/User/contactList/ContactList";
+import WhatsAppChat from "../feature/User/WhatsAppChat";
+import ApexChart from "../feature/Charts/ApexChart";
+import ChartJs from "../feature/Charts/ChartJs";
+import ToastChart from "../feature/Charts/ToastChart";
 
 const AppRoutes = () => {
   return (
@@ -36,9 +42,13 @@ const AppRoutes = () => {
       >
         <Route index element={<Dashboard />} />
         <Route path="profile" element={<UserProfile />} />
+        <Route path="pricing" element={<Pricing />} />
         <Route path="reports" element={<Reports />} />
         <Route path="calander" element={<Calendar />} />
+
         <Route path="user" element={<UserManagement />} />
+        <Route path="contact" element={<ContactList />} />
+        <Route path="user-chat" element={<WhatsAppChat />} />
 
         {/* e-commerce routes */}
         <Route path="product" element={<ProductManagement />} />
@@ -55,6 +65,11 @@ const AppRoutes = () => {
         {/* Advanced Ul routes */}
         <Route path="file-manager" element={<FileManager />} />
         <Route path="highlight" element={<Highlight />} />
+
+        {/* Charts routes */}
+        <Route path="chart-apex" element={<ApexChart />} />
+        <Route path="chart-js" element={<ChartJs />} />
+        <Route path="toast-chart" element={<ToastChart />} />
 
         <Route path="notification" element={<Message />} />
         <Route path="icons" element={<Icons />} />

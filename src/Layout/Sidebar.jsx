@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FiBarChart2, FiZap } from "react-icons/fi";
-import { FaSignature } from "react-icons/fa6";
+import { FiBarChart2 } from "react-icons/fi";
+import { FaMoneyBillWave, FaSignature } from "react-icons/fa6";
 import User from "../assets/user.jpg";
 import { LuLayoutDashboard } from "react-icons/lu";
 import {
@@ -17,6 +17,7 @@ import { SiElement } from "react-icons/si";
 import { Link } from "react-router";
 import { GiLevelFourAdvanced } from "react-icons/gi";
 import { TbIconsOff } from "react-icons/tb";
+import { FaChartPie } from "react-icons/fa";
 
 const menuItems = [
   {
@@ -38,18 +39,16 @@ const menuItems = [
     id: "users",
     icon: <BiUser />,
     label: "Users",
-    count: "2.4k",
     submanu: [
       { id: "user", label: "All Users" },
-      { id: "roles", label: "Roles & Permissions" },
-      { id: "activity", label: "User Activity" },
+      { id: "contact", label: "Contact List" },
+      { id: "user-chat", label: "Chat" },
     ],
   },
   {
     id: "ecommerce",
     icon: <BiShoppingBag />,
     label: "E-commerce",
-    count: "2.4k",
     submanu: [
       { id: "product", label: "Products" },
       { id: "product-order", label: "Orders" },
@@ -78,10 +77,25 @@ const menuItems = [
     ],
   },
   {
+    id: "charts",
+    icon: <FaChartPie />,
+    label: "Charts",
+    submanu: [
+      { id: "chart-apex", label: "Apex" },
+      { id: "chart-js", label: "Chartjs" },
+      { id: "toast-chart", label: "Toast UI" },
+    ],
+  },
+  {
     id: "inventory",
     icon: <BiPackage />,
     label: "Inventory",
     count: "847",
+  },
+  {
+    id: "pricing",
+    icon: <FaMoneyBillWave />,
+    label: "Pricing",
   },
   {
     id: "transactions",
@@ -112,7 +126,7 @@ const menuItems = [
   },
 ];
 
-const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
+const Sidebar = ({ collapse, openSetting,setOpenSetting, currentPage, onPageChange }) => {
   const [expandItem, setExpandItem] = useState(new Set(["analytics"]));
 
   const toggleExpanded = (itemId) => {
@@ -134,14 +148,12 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
           collapse ? "w-20" : "w-72"
         } bg-white/80 dark:bg-slate-900/80 transition-all duration-300 ease-in-out backdrop-blur-xl border-r border-slate-200/50 dark:border-slate-700/50 flex flex-col relative z-10`}
       >
-        {/* Logo */}
         <div className="p-6 border-b border-slate-200/50 dark:border-slate-700/50">
           <div className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
               <FaSignature className="w-6 h-6 text-white" />
             </div>
 
-            {/* conditional rendering */}
             {!collapse && (
               <div className="">
                 <span className="block text-xl font-bold text-slate-800 dark:text-white">
@@ -155,7 +167,6 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
           </div>
         </div>
 
-        {/* Navigations menus */}
         <nav className="flex-1 p-4 space-y-2.5 overflow-y-auto scrollbar-nav">
           {menuItems.map((item) => {
             return (
@@ -170,7 +181,6 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
                   <Link to={item.id} className="flex items-center space-x-3">
                     <span className="text-[20px]">{item.icon}</span>
 
-                    {/* conditional rendering */}
                     <>
                       {!collapse && (
                         <span className="ml-2 font-semibold">{item.label}</span>
@@ -205,7 +215,6 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
                   )}
                 </button>
 
-                {/* sab menu */}
                 {!collapse && item.submanu && expandItem.has(item.id) && (
                   <div className="ml-8 mt-2 space-y-1">
                     {item.submanu.map((submenu) => {
@@ -226,7 +235,6 @@ const Sidebar = ({ collapse, onToggle, currentPage, onPageChange }) => {
           })}
         </nav>
 
-        {/* user profile */}
         {!collapse && (
           <div className="p-4 border-t border-slate-200/50 dark:border-slate-700/50">
             <div className="flex items-center space-x-3 p-3 rounded-xl bg-slate-50 dark:bg-slate-800/50">

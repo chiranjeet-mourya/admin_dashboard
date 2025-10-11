@@ -162,11 +162,14 @@ const Document = () => {
             <div className="bg-white dark:bg-slate-900 rounded-lg p-5 w-full max-w-md shadow-lg">
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-bold mb-4 text-slate-800 dark:text-white">
-                Add Document
-              </h2>
-              <div onClick={() => setShowModal(false)} className="cursor-pointer">
-                <FaXmark size={22}/>
-              </div>
+                  Add Document
+                </h2>
+                <div
+                  onClick={() => setShowModal(false)}
+                  className="cursor-pointer"
+                >
+                  <FaXmark size={22} />
+                </div>
               </div>
 
               <div className="flex flex-col gap-3">

@@ -16,7 +16,8 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import User from "../assets/user.jpg";
-import { Link } from "react-router-dom";
+import user from "../assets/avatar.jpg";
+import { Link, useNavigate } from "react-router-dom";
 import { FaXmark } from "react-icons/fa6";
 
 const Header = ({ sidebarCollapse, onToggleSidebar }) => {
@@ -91,6 +92,13 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
       message: "Project meeting scheduled with the client",
     },
   ];
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");  
+    navigate("/login"); 
+  };
 
   return (
     <>
@@ -180,7 +188,7 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
                         className="flex items-start gap-3 p-3 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all cursor-pointer"
                       >
                         <img
-                          src={User}
+                          src={user}
                           alt={item.name}
                           className="w-10 h-10 rounded-full object-cover"
                         />
@@ -461,18 +469,22 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
                     >
                       <FaUser /> Profile
                     </Link>
-                    <button className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors">
-                      <FaMoneyBillWave /> Earning
-                    </button>
+                    <Link
+                      onClick={() => setOpenProfile(!openProfile)}
+                      to="pricing"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors"
+                    >
+                      <FaMoneyBillWave /> Pricing
+                    </Link>
                     <button className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 transition-colors">
                       <FaQuestionCircle /> Help Center
                     </button>
-                    <Link
-                      to="login"
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-red-500 dark:text-red-400 transition-colors"
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-slate-100 dark:hover:bg-slate-700 text-red-500 dark:text-red-400 transition-colors rounded-md w-full text-left"
                     >
                       <FaSignOutAlt /> Logout
-                    </Link>
+                    </button>
                   </div>
                 </div>
               )}
