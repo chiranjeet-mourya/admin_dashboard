@@ -24,6 +24,11 @@ body::-webkit-scrollbar-thumb {
   background: transparent;
   box-shadow: 0px 0px 0px 100000vh black;
 }
+/* a{
+  text-decoration: none !important;
+  color: black !important;
+  font-size: 16px !important;
+} */
 
 .scrollbar-nav {
   scrollbar-width: thin;
@@ -137,5 +142,17 @@ body::-webkit-scrollbar-thumb {
 
   100% {
     height: 10px;
+  }
+}
+.spin-slow {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

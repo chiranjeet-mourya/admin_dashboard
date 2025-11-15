@@ -18,6 +18,7 @@ import { Link } from "react-router";
 import { GiLevelFourAdvanced } from "react-icons/gi";
 import { TbIconsOff } from "react-icons/tb";
 import { FaChartPie } from "react-icons/fa";
+import { RiWechatChannelsLine } from "react-icons/ri";
 
 const menuItems = [
   {
@@ -115,18 +116,27 @@ const menuItems = [
     badge: "New",
   },
   {
+    id: "chatgpt",
+    icon: <RiWechatChannelsLine />,
+    label: "Chatgpt",
+  },
+  {
     id: "authentication",
     icon: <TbBrandOauth />,
     label: "Authentication",
   },
   {
-    id: "settings",
+    id: "theme-setting",
     icon: <CiSettings />,
     label: "Settings",
   },
 ];
 
-const Sidebar = ({ collapse, openSetting,setOpenSetting, currentPage, onPageChange }) => {
+const Sidebar = ({
+  collapse,
+  currentPage,
+  onPageChange,
+}) => {
   const [expandItem, setExpandItem] = useState(new Set(["analytics"]));
 
   const toggleExpanded = (itemId) => {
@@ -167,35 +177,56 @@ const Sidebar = ({ collapse, openSetting,setOpenSetting, currentPage, onPageChan
           </div>
         </div>
 
-        <nav className="flex-1 p-4 space-y-2.5 overflow-y-auto scrollbar-nav">
+        <nav className="flex-1 p-3 md:p-4 space-y-3 overflow-y-auto scrollbar-nav">
           {menuItems.map((item) => {
             return (
-              <div key={item.id}>
+              <div key={item.id} className="relative group">
                 <button
-                  className={`w-full flex items-center justify-between p-2 rounded-xl transition-all duration-200 cursor-pointer ${
-                    currentPage === item.id
-                      ? "bg-gradient-to-r from-blue-500  to-purple-600 text-white shadow-lg shadow-blue-500/25"
-                      : "text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800/50"
-                  }`}
+                  className={`relative w-full flex items-center justify-between p-2 rounded transition-all duration-300 cursor-pointer overflow-hidden
+      ${
+        currentPage === item.id
+          ? "text-white bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg shadow-blue-500/25"
+          : "text-slate-600 dark:text-slate-300"
+      }`}
                 >
-                  <Link to={item.id} className="flex items-center space-x-3">
-                    <span className="text-[20px]">{item.icon}</span>
+                  <span
+                    className={`absolute left-0 top-0 h-full w-[0px] bg-gradient-to-b from-blue-500 to-purple-600 transition-all duration-500 ease-in-out
+        group-hover:w-full group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-purple-600
+        ${
+          currentPage === item.id
+            ? "w-full bg-gradient-to-r from-blue-500 to-purple-600"
+            : ""
+        }
+      `}
+                  ></span>
 
-                    <>
-                      {!collapse && (
-                        <span className="ml-2 font-semibold">{item.label}</span>
-                      )}
-                      {!collapse && item.badge && (
-                        <span className="px-2 py-0.5 text-xs bg-red-500 text-white rounded-md">
-                          {item.badge}
+                  <Link
+                    to={item.id}
+                    className="flex text-slate-900 dark:text-white items-center space-x-3 relative z-10 w-full no-underline"
+                  >
+                    <span className="text-[20px]  group-hover:text-white">
+                      {item.icon}
+                    </span>
+
+                    {!collapse && (
+                      <>
+                        <span className="ml-2 font-semibold group-hover:text-white">
+                          {item.label}
                         </span>
-                      )}
-                      {!collapse && item.count && (
-                        <span className="px-2 py-0.5 text-xs bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md">
-                          {item.count}
-                        </span>
-                      )}
-                    </>
+
+                        {item.badge && (
+                          <span className="px-2 py-0.5 text-xs bg-red-500 text-white rounded-md">
+                            {item.badge}
+                          </span>
+                        )}
+
+                        {item.count && (
+                          <span className="px-2 py-0.5 text-xs bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300 rounded-md">
+                            {item.count}
+                          </span>
+                        )}
+                      </>
+                    )}
                   </Link>
 
                   {!collapse && item.submanu && (
@@ -207,27 +238,24 @@ const Sidebar = ({ collapse, openSetting,setOpenSetting, currentPage, onPageChan
                           onPageChange(item.id);
                         }
                       }}
+                      className="relative z-10"
                     >
-                      <BiChevronDown
-                        className={`w-5 h-5 transition-transform`}
-                      />
+                      <BiChevronDown className="w-5 h-5 transition-transform group-hover:text-white" />
                     </span>
                   )}
                 </button>
 
                 {!collapse && item.submanu && expandItem.has(item.id) && (
                   <div className="ml-8 mt-2 space-y-1">
-                    {item.submanu.map((submenu) => {
-                      return (
-                        <Link
-                          to={submenu.id}
-                          key={submenu.id}
-                          className="block w-full text-left p-2 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-all cursor-pointer"
-                        >
-                          {submenu.label}
-                        </Link>
-                      );
-                    })}
+                    {item.submanu.map((submenu) => (
+                      <Link
+                        to={submenu.id}
+                        key={submenu.id}
+                        className="block w-full text-left p-2 text-sm font-semibold text-slate-900 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/50 rounded-lg transition-all cursor-pointer no-underline"
+                      >
+                        {submenu.label}
+                      </Link>
+                    ))}
                   </div>
                 )}
               </div>
@@ -245,10 +273,10 @@ const Sidebar = ({ collapse, openSetting,setOpenSetting, currentPage, onPageChan
               />
               <div className="flex-1 min-w-0">
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm font-medium text-slate-800 dark:text-white truncate">
+                  <p className="text-sm font-medium text-slate-800 dark:text-white truncate mb-0">
                     Chiranjeet Mourya
                   </p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 truncate mb-0">
                     Administrator
                   </p>
                 </div>

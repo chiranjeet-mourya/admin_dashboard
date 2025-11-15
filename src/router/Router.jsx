@@ -26,6 +26,8 @@ import WhatsAppChat from "../feature/User/WhatsAppChat";
 import ApexChart from "../feature/Charts/ApexChart";
 import ChartJs from "../feature/Charts/ChartJs";
 import ToastChart from "../feature/Charts/ToastChart";
+import Chatgpt from "../feature/chatgpt/Chatgpt";
+import ThemeSetting from "../feature/dashboardTheme/ThemeSetting";
 
 const AppRoutes = () => {
   return (
@@ -73,7 +75,9 @@ const AppRoutes = () => {
 
         <Route path="notification" element={<Message />} />
         <Route path="icons" element={<Icons />} />
+        <Route path="chatgpt" element={<Chatgpt />} />
         <Route path="authentication" element={<MainAuth />} />
+        <Route path="theme-setting" element={<ThemeSetting />} />
         <Route path="*" element={<Dashboard />} />
       </Route>
     </Routes>

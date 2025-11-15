@@ -401,10 +401,10 @@ const UserManagement = () => {
 
         <div
           onClick={() => setOpen(true)}
-          className="mt-5 w-[150px] flex items-center justify-center gap-2 py-3 rounded-[6px] hover:shadow-lg text-slate-100 cursor-pointer dark:text-slate-100 bg-gradient-to-r from-blue-500 to-purple-600"
+          className="mt-5 w-[200px] flex items-center justify-center gap-2 py-2 rounded-[6px] hover:shadow-lg text-slate-100 cursor-pointer dark:text-slate-100 bg-gradient-to-r from-blue-500 to-purple-600"
         >
           <FaPlus />
-          <h2 className="font-semibold">Add New User</h2>
+          <h2 className="font-semibold text-[18px] mb-0">Add New User</h2>
         </div>
 
         {open && (
@@ -422,7 +422,7 @@ const UserManagement = () => {
                 </button>
               </div>
 
-              <form className="mt-4 flex flex-col gap-4 p-5">
+              <form className="flex flex-col gap-4 p-4 dark:bg-slate-900">
                 <div>
                   <label className="block text-sm font-semibold text-slate-700 dark:text-slate-200 mb-1">
                     Name

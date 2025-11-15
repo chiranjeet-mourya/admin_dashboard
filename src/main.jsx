@@ -5,6 +5,7 @@ import App from './App.jsx'
 import "react-toastify/dist/ReactToastify.css";
 import SmoothFollower from './component/SmoothFollower.jsx'
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <App />

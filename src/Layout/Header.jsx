@@ -20,7 +20,7 @@ import user from "../assets/avatar.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { FaXmark } from "react-icons/fa6";
 
-const Header = ({ sidebarCollapse, onToggleSidebar }) => {
+const Header = ({ sidebarCollapse, onToggleSidebar,handleShow }) => {
   const [openSetting, setOpenSetting] = useState(false);
   const [direction, setDirection] = useState("ltr");
   const [themeColor, setThemeColor] = useState("blue");
@@ -96,18 +96,25 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");  
-    navigate("/login"); 
+    localStorage.removeItem("token");
+    navigate("/login");
   };
+
 
   return (
     <>
-      <div className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 px-6 py-4">
+      <div className="bg-white/80 dark:bg-slate-900/50 backdrop-blur-xl border-b border-slate-200/50 dark:border-slate-700/50 px-6 py-5">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             <button
-              className="p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
+              className="hidden md:block p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
               onClick={onToggleSidebar}
+            >
+              <BiMenu className="w-6 h-6" />
+            </button>
+            <button
+            variant="primary" onClick={handleShow}
+              className="block md:hidden p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
             >
               <BiMenu className="w-6 h-6" />
             </button>
@@ -224,7 +231,7 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
                 onClick={() => setOpenSetting(true)}
                 className="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors cursor-pointer"
               >
-                <CiSettings className="w-6 h-6" />
+                <CiSettings className="w-6 h-6 animate-spin" />
               </button>
 
               {openSetting && (
@@ -492,6 +499,8 @@ const Header = ({ sidebarCollapse, onToggleSidebar }) => {
           </div>
         </div>
       </div>
+
+      
     </>
   );
 };
