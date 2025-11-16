@@ -28,6 +28,9 @@ import ChartJs from "../feature/Charts/ChartJs";
 import ToastChart from "../feature/Charts/ToastChart";
 import Chatgpt from "../feature/chatgpt/Chatgpt";
 import ThemeSetting from "../feature/dashboardTheme/ThemeSetting";
+import Transactions from "../feature/transtions/Transactions";
+import Inventory from "../feature/Inventory/Inventory";
+import HelpCenter from "../feature/HelpCenter/HelpCenter";
 
 const AppRoutes = () => {
   return (
@@ -44,13 +47,17 @@ const AppRoutes = () => {
       >
         <Route index element={<Dashboard />} />
         <Route path="profile" element={<UserProfile />} />
-        <Route path="pricing" element={<Pricing />} />
+        <Route path="help-center" element={<HelpCenter />} />
         <Route path="reports" element={<Reports />} />
         <Route path="calander" element={<Calendar />} />
 
         <Route path="user" element={<UserManagement />} />
         <Route path="contact" element={<ContactList />} />
         <Route path="user-chat" element={<WhatsAppChat />} />
+
+        <Route path="inventory" element={<Inventory />} />
+        <Route path="pricing" element={<Pricing />} />
+        <Route path="transactions" element={<Transactions />} />
 
         {/* e-commerce routes */}
         <Route path="product" element={<ProductManagement />} />
