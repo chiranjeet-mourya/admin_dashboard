@@ -31,6 +31,7 @@ import ThemeSetting from "../feature/dashboardTheme/ThemeSetting";
 import Transactions from "../feature/transtions/Transactions";
 import Inventory from "../feature/Inventory/Inventory";
 import HelpCenter from "../feature/HelpCenter/HelpCenter";
+import Calculator from "../feature/Calculator/Calculator";
 
 const AppRoutes = () => {
   return (
@@ -83,6 +84,7 @@ const AppRoutes = () => {
         <Route path="notification" element={<Message />} />
         <Route path="icons" element={<Icons />} />
         <Route path="chatgpt" element={<Chatgpt />} />
+        <Route path="calculator" element={<Calculator />} />
         <Route path="authentication" element={<MainAuth />} />
         <Route path="theme-setting" element={<ThemeSetting />} />
         <Route path="*" element={<Dashboard />} />

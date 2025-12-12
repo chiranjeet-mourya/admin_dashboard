@@ -19,6 +19,7 @@ import { GiLevelFourAdvanced } from "react-icons/gi";
 import { TbIconsOff } from "react-icons/tb";
 import { FaChartPie } from "react-icons/fa";
 import { RiWechatChannelsLine } from "react-icons/ri";
+import { SlCalculator } from "react-icons/sl";
 
 const menuItems = [
   {
@@ -119,6 +120,11 @@ const menuItems = [
     id: "chatgpt",
     icon: <RiWechatChannelsLine />,
     label: "Chatgpt",
+  },
+  {
+    id: "calculator",
+    icon: <SlCalculator />,
+    label: "Calculator",
   },
   {
     id: "authentication",
